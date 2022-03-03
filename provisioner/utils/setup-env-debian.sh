@@ -24,6 +24,10 @@ apt-get -y install rng-tools
 sed -i.bak 's@#HRNGDEVICE=/dev/null@HRNGDEVICE=/dev/urandom@' /etc/default/rng-tools
 service rng-tools start
 
+# Install and start chrony
+apt-get -y install chrony
+service chronyd start
+
 # The testing process would be broken due to "No such file or derictory: /etc/default/locale" in ubuntu16.04.
 apt-get install -y locales
 
