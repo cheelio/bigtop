@@ -20,8 +20,8 @@
   <services>
     <service>
       <name>HDFS</name>
-      <version>2.8.4+bigtop</version>
-      <extends>common-services/HDFS/2.1.0.2.0</extends>
+      <version>3.2.2+bigtop</version>
+      <extends>common-services/HDFS/3.0.0.3.0</extends>
     </service>
   </services>
 </metainfo>
