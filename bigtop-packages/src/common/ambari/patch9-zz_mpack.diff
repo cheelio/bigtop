@@ -1,0 +1,63 @@
+diff --git a/ambari-common/src/main/python/resource_management/libraries/script/script.py b/ambari-common/src/main/python/resource_management/libraries/script/script.py
+index d5e27460..3593fea0 100644
+--- a/ambari-common/src/main/python/resource_management/libraries/script/script.py
++++ b/ambari-common/src/main/python/resource_management/libraries/script/script.py
+@@ -220,35 +220,6 @@ class Script(object):
+       component_version = repository_version
+ 
+     stack_name = Script.get_stack_name()
+-    stack_select_package_name = stack_select.get_package_name()
+-
+-    if stack_select_package_name and stack_name:
+-      # only query for the component version from stack-select if we can't trust the repository yet
+-      if component_version is None:
+-        component_version = version_select_util.get_component_version_from_symlink(stack_name, stack_select_package_name)
+-
+-      # last ditch effort - should cover the edge case where the package failed to setup its
+-      # link and we have to try to see if <stack-select> can help
+-      if component_version is None:
+-        output, code, versions = stack_select.unsafe_get_stack_versions()
+-        if len(versions) == 1:
+-          component_version = versions[0]
+-          Logger.error("The '{0}' component did not advertise a version. This may indicate a problem with the component packaging. " \
+-                         "However, the stack-select tool was able to report a single version installed ({1}). " \
+-                         "This is the version that will be reported.".format(stack_select_package_name, component_version))
+-
+-      if component_version:
+-        self.put_structured_out({"version": component_version})
+-
+-        # if repository_version_id is passed, pass it back with the version
+-        from resource_management.libraries.functions.default import default
+-        repo_version_id = default("/repositoryFile/repoVersionId", None)
+-        if repo_version_id:
+-          self.put_structured_out({"repository_version_id": repo_version_id})
+-      else:
+-        if not self.is_hook():
+-          Logger.error("The '{0}' component did not advertise a version. This may indicate a problem with the component packaging.".format(stack_select_package_name))
+-
+ 
+   def should_expose_component_version(self, command_name):
+     """
+diff --git a/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py b/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py
+index 16090504..f8bec67c 100644
+--- a/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py
++++ b/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py
+@@ -19,8 +19,6 @@ limitations under the License.
+ 
+ import os
+ 
+-from resource_management.libraries.functions import stack_tools
+-from resource_management.libraries.functions.version import compare_versions
+ from resource_management.core.resources.packaging import Package
+ 
+ def install_packages():
+@@ -29,9 +27,6 @@ def install_packages():
+     return
+ 
+   packages = ['unzip', 'curl']
+-  if params.stack_version_formatted != "" and compare_versions(params.stack_version_formatted, '2.2') >= 0:
+-    stack_selector_package = stack_tools.get_stack_tool_package(stack_tools.STACK_SELECTOR_NAME)
+-    packages.append(stack_selector_package)
+   Package(packages,
+           retry_on_repo_unavailability=params.agent_stack_retry_on_unavailability,
+           retry_count=params.agent_stack_retry_count)

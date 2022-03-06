@@ -14,6 +14,11 @@
       "name" : "bgtp-stack-definitions",
       "type" : "stack-definitions",
       "source_dir": "stacks"
+    },
+    {
+      "name": "bgtp-service-definitions",
+      "type": "service-definitions",
+      "source_dir": "common-services"
     }
   ]
 }
