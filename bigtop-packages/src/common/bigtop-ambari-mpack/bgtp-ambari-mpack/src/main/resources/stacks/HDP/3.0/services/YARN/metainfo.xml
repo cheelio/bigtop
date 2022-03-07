@@ -255,10 +255,10 @@
           <osFamily>debian7,debian9,ubuntu12,ubuntu14,ubuntu16,ubuntu18</osFamily>
           <packages>
             <package>
-              <name>hadoop-${stack_version}-yarn</name>
+              <name>hadoop-yarn</name>
             </package>
             <package>
-              <name>hadoop-${stack_version}-mapreduce</name>
+              <name>hadoop-mapreduce</name>
             </package>
           </packages>
         </osSpecific>

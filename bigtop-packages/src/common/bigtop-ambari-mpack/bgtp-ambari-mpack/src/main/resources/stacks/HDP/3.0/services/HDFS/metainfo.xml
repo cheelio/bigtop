@@ -323,10 +323,10 @@
           <osFamily>redhat7,amazonlinux2,redhat6,suse11</osFamily>
           <packages>
             <package>
-              <name>hadoop_${stack_version}</name>
+              <name>hadoop</name>
             </package>
             <package>
-              <name>hadoop_${stack_version}-client</name>
+              <name>hadoop-client</name>
             </package>
             <package>
               <name>snappy</name>
@@ -335,7 +335,7 @@
               <name>snappy-devel</name>
             </package>
             <package>
-              <name>hadoop_${stack_version}-libhdfs</name>
+              <name>hadoop-libhdfs</name>
             </package>
           </packages>
         </osSpecific>
@@ -344,10 +344,10 @@
           <osFamily>suse12</osFamily>
           <packages>
             <package>
-              <name>hadoop_${stack_version}</name>
+              <name>hadoop</name>
             </package>
             <package>
-              <name>hadoop_${stack_version}-client</name>
+              <name>hadoop-client</name>
             </package>
             <package>
               <name>snappy</name>
@@ -356,7 +356,7 @@
               <name>snappy-devel</name>
             </package>
             <package>
-              <name>hadoop_${stack_version}-libhdfs</name>
+              <name>hadoop-libhdfs</name>
             </package>
           </packages>
         </osSpecific>

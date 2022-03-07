@@ -76,10 +76,10 @@
           <osFamily>amazonlinux2,redhat6,redhat7,suse11,suse12</osFamily>
           <packages>
             <package>
-              <name>zookeeper_${stack_version}</name>
+              <name>zookeeper</name>
             </package>
             <package>
-              <name>zookeeper_${stack_version}-server</name>
+              <name>zookeeper-server</name>
             </package>
           </packages>
         </osSpecific>
@@ -87,10 +87,10 @@
           <osFamily>debian7,debian9,ubuntu12,ubuntu14,ubuntu16,ubuntu18</osFamily>
           <packages>
             <package>
-              <name>zookeeper-${stack_version}</name>
+              <name>zookeeper</name>
             </package>
             <package>
-              <name>zookeeper-${stack_version}-server</name>
+              <name>zookeeper-server</name>
             </package>
           </packages>
         </osSpecific>
