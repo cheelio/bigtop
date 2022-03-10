@@ -68,12 +68,12 @@ hadoop_metrics2_properties_content = None
 if 'hadoop-metrics2.properties' in config['configurations']:
   hadoop_metrics2_properties_content = config['configurations']['hadoop-metrics2.properties']['content']
 
-hadoop_libexec_dir = stack_select.get_hadoop_dir("libexec")
+hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
 hadoop_lib_home = stack_select.get_hadoop_dir("lib")
 hadoop_bin = stack_select.get_hadoop_dir("sbin")
 
-mapreduce_libs_path = "/usr/hdp/current/hadoop-mapreduce-client/*"
-hadoop_home = stack_select.get_hadoop_dir("home")
+mapreduce_libs_path = "/usr/lib/hadoop/hadoop-mapreduce-client/*"
+hadoop_home = '/usr/lib/hadoop'
 create_lib_snappy_symlinks = False
   
 current_service = config['serviceName']

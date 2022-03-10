@@ -23,12 +23,12 @@
     <service>
       <name>SPARK2</name>
       <displayName>Spark2</displayName>
-      <comment>Apache Spark 2.3 is a fast and general engine for large-scale data processing.</comment>
-      <version>2.3.0</version>      
+      <comment>Apache Spark 3.0 is a fast and general engine for large-scale data processing.</comment>
+      <version>3.0.0</version>
       <components>
         <component>
           <name>SPARK2_JOBHISTORYSERVER</name>
-          <displayName>Spark2 History Server</displayName>
+          <displayName>Spark History Server</displayName>
           <category>MASTER</category>
           <cardinality>1+</cardinality>
           <versionAdvertised>true</versionAdvertised>
@@ -257,16 +257,13 @@
           <osFamily>redhat7,amazonlinux2,redhat6,suse11,suse12</osFamily>
           <packages>
             <package>
-              <name>spark2_${stack_version}</name>
+              <name>spark-core</name>
             </package>
             <package>
-              <name>spark2_${stack_version}-python</name>
+              <name>spark-python</name>
             </package>
             <package>
-              <name>livy2_${stack_version}</name>
-            </package>
-            <package>
-              <name>spark-atlas-connector_${stack_version}</name>
+              <name>livy</name>
             </package>
           </packages>
         </osSpecific>
@@ -274,16 +271,13 @@
           <osFamily>debian7,debian9,ubuntu12,ubuntu14,ubuntu16,ubuntu18</osFamily>
           <packages>
             <package>
-              <name>spark2-${stack_version}</name>
+              <name>spark-core</name>
             </package>
             <package>
-              <name>spark2-${stack_version}-python</name>
+              <name>spark-python</name>
             </package>
             <package>
-              <name>livy2-${stack_version}</name>
-            </package>
-            <package>
-              <name>spark-atlas-connector-${stack_version}</name>
+              <name>livy</name>
             </package>
           </packages>
         </osSpecific>

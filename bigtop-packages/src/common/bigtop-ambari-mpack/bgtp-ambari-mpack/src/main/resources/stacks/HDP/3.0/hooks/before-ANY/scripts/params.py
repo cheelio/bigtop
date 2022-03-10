@@ -108,16 +108,16 @@ def is_secure_port(port):
 # which would cause a lot of problems when writing out hadoop-env.sh; instead
 # force the use of "current" in the hook
 hdfs_user_nofile_limit = default("/configurations/hadoop-env/hdfs_user_nofile_limit", "128000")
-hadoop_home = stack_select.get_hadoop_dir("home")
-hadoop_libexec_dir = stack_select.get_hadoop_dir("libexec")
-hadoop_lib_home = stack_select.get_hadoop_dir("lib")
+hadoop_home = '/usr/lib/hadoop'
+hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
+hadoop_lib_home = '/usr/lib/hadoop/lib'
 
 hadoop_dir = "/etc/hadoop"
 hadoop_java_io_tmpdir = os.path.join(tmp_dir, "hadoop_java_io_tmpdir")
 datanode_max_locked_memory = config['configurations']['hdfs-site']['dfs.datanode.max.locked.memory']
 is_datanode_max_locked_memory_set = not is_empty(config['configurations']['hdfs-site']['dfs.datanode.max.locked.memory'])
 
-mapreduce_libs_path = "/usr/hdp/current/hadoop-mapreduce-client/*"
+mapreduce_libs_path = "/usr/lib/hadoop/hadoop-mapreduce-client/*"
 
 if not security_enabled:
   hadoop_secure_dn_user = '""'

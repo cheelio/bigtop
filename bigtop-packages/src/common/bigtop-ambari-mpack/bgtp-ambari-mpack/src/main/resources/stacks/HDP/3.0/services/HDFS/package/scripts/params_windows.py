@@ -29,11 +29,11 @@ from status_params import *
 config = Script.get_config()
 hadoop_conf_dir = None
 hbase_conf_dir = None
-hadoop_home = None
+hadoop_home = '/usr/lib/hadoop'
 try:
   hadoop_conf_dir = os.environ["HADOOP_CONF_DIR"]
   hbase_conf_dir = os.environ["HBASE_CONF_DIR"]
-  hadoop_home = os.environ["HADOOP_HOME"]
+  hadoop_home = '/usr/lib/hadoop'
 except:
   pass
 #directories & files

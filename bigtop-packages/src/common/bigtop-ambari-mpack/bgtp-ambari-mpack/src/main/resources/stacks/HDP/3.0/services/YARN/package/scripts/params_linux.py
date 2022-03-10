@@ -115,11 +115,11 @@ def get_spark_version(service_name, component_name, yarn_version):
 
   # even with the default of using YARN's version, on an install this might be None since we haven't
   # calculated the version of YARN yet - use stack_select as a last ditch effort
-  if spark_classpath_version is None:
-    try:
-      spark_classpath_version = stack_select.get_role_component_current_stack_version()
-    except:
-      Logger.exception("Unable to query for the correct spark version to use when building classpaths")
+  #if spark_classpath_version is None:
+  #  try:
+  #    spark_classpath_version = stack_select.get_role_component_current_stack_version()
+  #  except:
+  #    Logger.exception("Unable to query for the correct spark version to use when building classpaths")
 
   return spark_classpath_version
 
@@ -131,12 +131,17 @@ stack_supports_ranger_audit_db = check_stack_feature(StackFeature.RANGER_AUDIT_D
 hostname = config['agentLevelParams']['hostname']
 
 # hadoop default parameters
-hadoop_home = status_params.hadoop_home
-hadoop_libexec_dir = stack_select.get_hadoop_dir("libexec")
-hadoop_bin = stack_select.get_hadoop_dir("sbin")
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
-hadoop_lib_home = stack_select.get_hadoop_dir("lib")
-hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
+hadoop_home = '/usr/lib/hadoop'
+hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
+hadoop_bin = '/usr/lib/hadoop/sbin/'
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
+hadoop_lib_home = '/usr/lib/hadoop/lib/'
+hadoop_conf_dir = '/etc/hadoop/conf'
+hadoop_yarn_home = '/usr/lib/hadoop-yarn'
+hadoop_mapred2_jar_location = "/usr/lib/hadoop-mapreduce"
+mapred_bin = "/usr/lib/hadoop-mapreduce/sbin"
+yarn_bin = "/usr/lib/hadoop-yarn/sbin"
+yarn_container_bin = "/usr/lib/hadoop-yarn/bin"
 hadoop_java_io_tmpdir = os.path.join(tmp_dir, "hadoop_java_io_tmpdir")
 
 # MapR directory root
@@ -151,8 +156,8 @@ if command_role in YARN_SERVER_ROLE_DIRECTORY_MAP:
   yarn_role_root = YARN_SERVER_ROLE_DIRECTORY_MAP[command_role]
 
 # defaults set to current based on role
-hadoop_mapr_home = format("{stack_root}/current/{mapred_role_root}")
-hadoop_yarn_home = format("{stack_root}/current/{yarn_role_root}")
+hadoop_mapr_home = format("/usr/lib/hadoop-yarn")
+hadoop_yarn_home = format("/usr/lib/hadoop-yarn")
 
 # try to render the specific version
 version = component_version.get_component_repository_version()

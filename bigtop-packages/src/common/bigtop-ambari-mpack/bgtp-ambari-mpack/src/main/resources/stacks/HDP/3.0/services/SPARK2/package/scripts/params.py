@@ -78,16 +78,16 @@ sysprep_skip_copy_tarballs_hdfs = get_sysprep_skip_copy_tarballs_hdfs()
 # New Cluster Stack Version that is defined during the RESTART of a Stack Upgrade
 version = default("/commandParams/version", None)
 
-spark_conf = '/etc/spark2/conf'
+spark_conf = '/etc/spark/conf'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
 
-if stack_version_formatted and check_stack_feature(StackFeature.ROLLING_UPGRADE, stack_version_formatted):
-  hadoop_home = stack_select.get_hadoop_dir("home")
-  spark_conf = format("{stack_root}/current/{component_directory}/conf")
-  spark_log_dir = config['configurations']['spark2-env']['spark_log_dir']
-  spark_pid_dir = status_params.spark_pid_dir
-  spark_home = format("{stack_root}/current/{component_directory}")
+#if stack_version_formatted and check_stack_feature(StackFeature.ROLLING_UPGRADE, stack_version_formatted):
+hadoop_home = '/usr/lib/hadoop'
+#  spark_conf = format("{stack_root}/current/{component_directory}/conf")
+spark_log_dir = format("/var/log/spark")
+spark_pid_dir = format("/var/run/spark")
+spark_home = format("/usr/lib/spark")
 
 spark_daemon_memory = config['configurations']['spark2-env']['spark_daemon_memory']
 spark_thrift_server_conf_file = spark_conf + "/spark-thrift-sparkconf.conf"
@@ -163,7 +163,7 @@ if sac_enabled:
                                             "atlas.rest.address", "atlas.authentication.method.kerberos.principal", "atlas.authentication.method.kerberos",
                                             "atlas.authentication.method.kerberos.keytab"]
   application_properties = dict(config['configurations']['application-properties'])
-  spark_atlas_jar_dir = "/usr/hdp/current/spark-atlas-connector/"
+  spark_atlas_jar_dir = "/usr/lib/hadoop/spark-atlas-connector/"
   if security_enabled:
     atlas_kafka_keytab = default("/configurations/spark2-atlas-application-properties-override/atlas.jaas.KafkaClient.option.keyTab", None)
     kafka_user = config['configurations']['kafka-env']['kafka_user']
