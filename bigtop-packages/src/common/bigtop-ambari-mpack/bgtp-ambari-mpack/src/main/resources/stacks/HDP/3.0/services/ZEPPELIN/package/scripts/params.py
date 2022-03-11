@@ -276,7 +276,7 @@ if stack_version_formatted and check_stack_feature(StackFeature.SPARK_LIVY2, sta
 hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
 hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
 kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
 hdfs_site = config['configurations']['hdfs-site']

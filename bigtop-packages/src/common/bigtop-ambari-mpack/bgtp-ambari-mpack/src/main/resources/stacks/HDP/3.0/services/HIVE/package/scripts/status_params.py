@@ -74,24 +74,24 @@ hive_user = config['configurations']['hive-env']['hive_user']
 
 # default configuration directories
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 
 hive_server_conf_dir = "/etc/hive/conf"
 hive_server_interactive_conf_dir = "/etc/hive_llap/conf"
 tez_conf_dir = "/etc/tez/conf"
 tez_interactive_conf_dir = "/etc/tez_llap/conf"
 
-hive_home_dir = format("{stack_root}/current/{component_directory}")
-hive_conf_dir = format("{stack_root}/current/{component_directory}/conf")
-hive_client_conf_dir = format("{stack_root}/current/{component_directory}/conf")
+hive_home_dir = format("/usr/lib/hive")
+hive_conf_dir = format("/usr/lib/hive/conf")
+hive_client_conf_dir = format("/usr/lib/hive/conf")
 
 if check_stack_feature(StackFeature.CONFIG_VERSIONING, stack_version_formatted_major):
-  hive_server_conf_dir = format("{stack_root}/current/{component_directory}/conf/")
+  hive_server_conf_dir = format("/usr/lib/hive/conf/")
   hive_conf_dir = hive_server_conf_dir
 
 # if stack version supports hive serve interactive
 if check_stack_feature(StackFeature.HIVE_SERVER_INTERACTIVE, stack_version_formatted_major):
-  hive_server_interactive_conf_dir = format("{stack_root}/current/{component_directory_interactive}/conf_llap/")
+  hive_server_interactive_conf_dir = format("/usr/lib/hive/conf_llap/")
 
 hive_config_dir = hive_client_conf_dir
 

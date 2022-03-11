@@ -59,7 +59,7 @@ logsearch_config_file_path = agent_cache_dir + "/" + service_package_folder + "/
 logsearch_config_file_exists = os.path.isfile(logsearch_config_file_path)
 
 # default hadoop params
-hadoop_libexec_dir = stack_select.get_hadoop_dir("libexec")
+hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
 
 mapreduce_libs_path = "/usr/hdp/current/hadoop-mapreduce-client/*"
 

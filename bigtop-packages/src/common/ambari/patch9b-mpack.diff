@@ -61,6 +61,36 @@ index d5e27460..3593fea0 100644
  
    def should_expose_component_version(self, command_name):
      """
+diff --git a/ambari-server/src/main/resources/common-services/ZOOKEEPER/3.4.5/configuration/zoo.cfg.xml b/ambari-server/src/main/resources/common-services/ZOOKEEPER/3.4.5/configuration/zoo.cfg.xml
+index 58778777..e0cb6223 100644
+--- a/ambari-server/src/main/resources/common-services/ZOOKEEPER/3.4.5/configuration/zoo.cfg.xml
++++ b/ambari-server/src/main/resources/common-services/ZOOKEEPER/3.4.5/configuration/zoo.cfg.xml
+@@ -90,4 +90,25 @@
+       Set to a positive integer (1 and above) to enable the auto purging.</description>
+     <on-ambari-upgrade add="true"/>
+   </property>
++  <property>
++    <name>admin.enableServer</name>
++    <value>true</value>
++    <display-name>Enable Admin Server</display-name>
++    <description>Enable Zookeeper admin server</description>
++    <value-attributes>
++      <type>boolean</type>
++    </value-attributes>
++    <on-ambari-upgrade add="true"/>
++  </property>
++  <property>
++    <name>admin.serverPort</name>
++    <value>8083</value>
++    <display-name>Port for running ZK AdminServer</display-name>
++    <description>Port for running ZK AdminServer.</description>
++    <value-attributes>
++      <type>int</type>
++      <overridable>false</overridable>
++    </value-attributes>
++    <on-ambari-upgrade add="true"/>
++  </property>
+ </configuration>
 diff --git a/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py b/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py
 index 16090504..f8bec67c 100644
 --- a/ambari-server/src/main/resources/stack-hooks/before-INSTALL/scripts/shared_initialization.py

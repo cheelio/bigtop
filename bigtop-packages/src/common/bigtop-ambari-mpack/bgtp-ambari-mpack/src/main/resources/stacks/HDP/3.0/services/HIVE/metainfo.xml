@@ -282,10 +282,10 @@
           <osFamily>redhat7,amazonlinux2,redhat6,suse11,suse12</osFamily>
           <packages>
             <package>
-              <name>hive_${stack_version}</name>
+              <name>hive</name>
             </package>
             <package>
-              <name>hive_${stack_version}-hcatalog</name>
+              <name>hive-hcatalog</name>
             </package>
           </packages>
         </osSpecific>
@@ -313,10 +313,10 @@
           <osFamily>debian7,debian9,ubuntu12,ubuntu14,ubuntu16,ubuntu18</osFamily>
           <packages>
             <package>
-              <name>hive-${stack_version}</name>
+              <name>hive</name>
             </package>
             <package>
-              <name>hive-${stack_version}-hcatalog</name>
+              <name>hive-hcatalog</name>
             </package>
           </packages>
         </osSpecific>

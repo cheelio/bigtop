@@ -111,15 +111,15 @@ stack_supports_atlas_hook_for_hive_interactive = check_stack_feature(StackFeatur
 # component ROLE directory (like hive-metastore or hive-server2-hive)
 component_directory = status_params.component_directory
 
-hadoop_home = format('{stack_root}/current/hadoop-client')
-hive_bin = format('{stack_root}/current/{component_directory}/bin')
-hive_schematool_ver_bin = format('{stack_root}/{version}/hive/bin')
-hive_schematool_bin = format('{stack_root}/current/{component_directory}/bin')
-hive_lib = format('{stack_root}/current/{component_directory}/lib')
-hive_version_lib = format('{stack_root}/{version}/hive/lib')
+hadoop_home = format('/usr/lib/hadoop')
+hive_bin = format('/usr/lib/hive/bin')
+hive_schematool_ver_bin = format('/usr/lib/hive/bin')
+hive_schematool_bin = format('/usr/lib/hive/bin')
+hive_lib = format('/usr/lib/hive/lib')
+hive_version_lib = format('/usr/lib/hive/lib')
 hive_var_lib = '/var/lib/hive'
 hive_user_home_dir = "/home/hive"
-zk_bin = format('{stack_root}/current/zookeeper-client/bin')
+zk_bin = "/usr/lib/zookeeper/bin"
 
 # starting on stacks where HSI is supported, we need to begin using the 'hive2' schematool
 hive_server2_hive_dir = None
@@ -130,26 +130,26 @@ if check_stack_feature(StackFeature.HIVE_SERVER_INTERACTIVE, version_for_stack_f
   hive_server2_hive_component = status_params.SERVER_ROLE_DIRECTORY_MAP["HIVE_SERVER"]
 
   # when using the version, we can just specify the component as "hive2"
-  hive_schematool_ver_bin = format('{stack_root}/{version}/hive/bin')
+  hive_schematool_ver_bin = format('/usr/lib/hive/bin')
 
   # use the schematool which ships with hive2
-  hive_schematool_bin = format('{stack_root}/current/{hive_server2_hive_component}/bin')
+  hive_schematool_bin = format('/usr/lib/hive/bin')
 
   # <stack-root>/<version>/hive2 (as opposed to <stack-root>/<version>/hive)
-  hive_server2_hive_dir = format('{stack_root}/current/{hive_server2_hive_component}')
+  hive_server2_hive_dir = format('/usr/lib/hive')
 
   # <stack-root>/<version>/hive2 (as opposed to <stack-root>/<version>/hive)
-  hive_server2_hive_version_dir = format('{stack_root}/{version}/hive')
+  hive_server2_hive_version_dir = format('/usr/lib/hive')
 
   # <stack-root>/current/hive-server2-hive/lib -> <stack-root>/<version>/hive2/lib
-  hive_server2_hive_lib = format('{hive_server2_hive_dir}/lib')
+  hive_server2_hive_lib = format('/usr/lib/hive/lib')
 
   # <stack-root>/<version>/hive2/lib
-  hive_server2_hive_version_lib = format('{hive_server2_hive_version_dir}/lib')
+  hive_server2_hive_version_lib = format('/usr/lib/hive/lib')
 
 
-hive_interactive_bin = format('{stack_root}/current/{hive_server2_hive_component}/bin')
-hive_interactive_lib = format('{stack_root}/current/{hive_server2_hive_component}/lib')
+hive_interactive_bin = format('/usr/lib/hive/bin')
+hive_interactive_lib = format('/usr/lib/hive/lib')
 
 # Heap dump related
 heap_dump_enabled = default('/configurations/hive-env/enable_heap_dump', None)
@@ -294,7 +294,7 @@ driver_curl_source = format("{jdk_location}/{jdbc_jar_name}")
 # but in RU if <stack-selector-tool> is called and the restart fails, then this means that current pointer
 # is now pointing to the upgraded version location; that's bad for the cp command
 version_for_source_jdbc_file = upgrade_summary.get_source_version(default_version = version_for_stack_feature_checks)
-source_jdbc_file = format("{stack_root}/{version_for_source_jdbc_file}/hive/lib/{jdbc_jar_name}")
+source_jdbc_file = format("/usr/lib/hive/lib/{jdbc_jar_name}")
 
 check_db_connection_jar_name = "DBConnectionVerification.jar"
 check_db_connection_jar = format("/usr/lib/ambari-agent/{check_db_connection_jar_name}")

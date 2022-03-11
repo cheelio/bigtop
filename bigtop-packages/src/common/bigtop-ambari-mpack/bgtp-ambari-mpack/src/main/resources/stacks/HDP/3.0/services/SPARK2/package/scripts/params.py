@@ -80,7 +80,7 @@ version = default("/commandParams/version", None)
 
 spark_conf = '/etc/spark/conf'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 
 #if stack_version_formatted and check_stack_feature(StackFeature.ROLLING_UPGRADE, stack_version_formatted):
 hadoop_home = '/usr/lib/hadoop'
@@ -252,7 +252,7 @@ default_fs = config['configurations']['core-site']['fs.defaultFS']
 hdfs_site = config['configurations']['hdfs-site']
 hdfs_resource_ignore_file = "/var/lib/ambari-agent/data/.hdfs_resource_ignore"
 
-hive_schematool_bin = format('{stack_root}/current/{hive_component_directory}/bin')
+hive_schematool_bin = format('/usr/lib/hive/bin')
 hive_metastore_db_type = config['configurations']['hive-env']['hive_database_type']
 
 ats_host = set(default("/clusterHostInfo/app_timeline_server_hosts", []))

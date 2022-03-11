@@ -69,7 +69,7 @@ if 'hadoop-metrics2.properties' in config['configurations']:
   hadoop_metrics2_properties_content = config['configurations']['hadoop-metrics2.properties']['content']
 
 hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
-hadoop_lib_home = stack_select.get_hadoop_dir("lib")
+hadoop_lib_home = '/usr/lib/hadoop/lib'
 hadoop_bin = stack_select.get_hadoop_dir("sbin")
 
 mapreduce_libs_path = "/usr/lib/hadoop/hadoop-mapreduce-client/*"
@@ -291,7 +291,7 @@ hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
 kinit_path_local = get_kinit_path()
 stack_version_unformatted = config['clusterLevelParams']['stack_version']
 stack_version_formatted = format_stack_version(stack_version_unformatted)
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 hdfs_principal_name = default('/configurations/hadoop-env/hdfs_principal_name', None)
 hdfs_site = config['configurations']['hdfs-site']
 smoke_user =  config['configurations']['cluster-env']['smokeuser']

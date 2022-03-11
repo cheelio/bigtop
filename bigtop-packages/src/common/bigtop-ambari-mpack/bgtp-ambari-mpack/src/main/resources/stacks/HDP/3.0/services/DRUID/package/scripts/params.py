@@ -125,7 +125,7 @@ security_enabled = config['configurations']['cluster-env']['security_enabled']
 hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
 kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
 hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 hdfs_principal_name = default('/configurations/hadoop-env/hdfs_principal_name', 'missing_principal').replace("_HOST",
                                                                                                              hostname)
@@ -199,7 +199,7 @@ if has_metric_collector:
 stack_version_unformatted = str(config['clusterLevelParams']['stack_version'])
 io_compression_codecs = default("/configurations/core-site/io.compression.codecs", None)
 lzo_enabled = should_install_lzo()
-hadoop_lib_home = stack_root + '/' + stack_version + '/hadoop/lib'
+hadoop_lib_home = '/usr/lib/hadoop/lib'
 
 kafka_hosts = default('/clusterHostInfo/kafka_broker_hosts', [])
 has_kafka = len(kafka_hosts) > 0

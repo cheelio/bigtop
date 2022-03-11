@@ -74,7 +74,7 @@ def hive_service(name, action='start', upgrade_type=None):
       process_id_exists_command = None
 
       if params.version and params.stack_root:
-        hadoop_home = format("{stack_root}/{version}/hadoop")
+        hadoop_home = format("/usr/lib/hadoop")
         hive_bin = os.path.join(params.hive_bin, hive_bin)
       
     Execute(daemon_cmd, 

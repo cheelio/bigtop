@@ -137,10 +137,10 @@ hostname = config['agentLevelParams']['hostname']
 
 # hadoop default parameters
 hadoop_home = status_params.hadoop_home
-hadoop_libexec_dir = stack_select.get_hadoop_dir("libexec")
+hadoop_libexec_dir = '/usr/lib/hadoop/libexec'
 hadoop_bin = stack_select.get_hadoop_dir("sbin")
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
-hadoop_lib_home = stack_select.get_hadoop_dir("lib")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
+hadoop_lib_home = '/usr/lib/hadoop/lib'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 hadoop_yarn_home = '/usr/lib/hadoop-yarn'
 hadoop_mapred2_jar_location = "/usr/lib/hadoop-mapreduce"

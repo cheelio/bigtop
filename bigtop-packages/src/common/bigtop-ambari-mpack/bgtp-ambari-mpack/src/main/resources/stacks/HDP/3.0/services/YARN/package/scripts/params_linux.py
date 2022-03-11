@@ -618,7 +618,7 @@ docker_allowed_volume_drivers = config['configurations']['container-executor']['
 # ATSv2 integration properties started.
 yarn_timelinereader_pid_file = status_params.yarn_timelinereader_pid_file
 
-yarn_atsv2_hbase_versioned_home = format("{stack_root}/{version}/hbase")
+yarn_atsv2_hbase_versioned_home = '/usr/lib/hadoop-hbase'
 yarn_hbase_bin = format("{yarn_atsv2_hbase_versioned_home}/bin")
 yarn_hbase_hdfs_root_dir = config['configurations']['yarn-hbase-site']['hbase.rootdir']
 cluster_zookeeper_quorum_hosts = ",".join(config['clusterHostInfo']['zookeeper_server_hosts'])

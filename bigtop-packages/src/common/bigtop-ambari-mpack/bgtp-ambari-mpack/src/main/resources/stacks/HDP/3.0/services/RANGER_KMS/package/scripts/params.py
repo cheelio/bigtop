@@ -320,7 +320,7 @@ hdfs_user_keytab = default("/configurations/hadoop-env/hdfs_user_keytab", None)
 hdfs_principal_name = default("/configurations/hadoop-env/hdfs_principal_name", None)
 default_fs = default("/configurations/core-site/fs.defaultFS", None)
 hdfs_site = config['configurations']['hdfs-site'] if has_namenode else None
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin") if has_namenode else None
+hadoop_bin_dir = '/usr/lib/hadoop/bin/' if has_namenode else None
 kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
 dfs_type = default("/clusterLevelParams/dfs_type", "")
 

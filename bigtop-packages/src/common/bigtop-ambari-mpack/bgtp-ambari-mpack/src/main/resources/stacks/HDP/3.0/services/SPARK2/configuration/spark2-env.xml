@@ -65,7 +65,7 @@
   <property>
     <name>spark_pid_dir</name>
     <display-name>Spark PID directory</display-name>
-    <value>/var/run/spark2</value>
+    <value>/var/run/spark</value>
     <value-attributes>
       <type>directory</type>
     </value-attributes>

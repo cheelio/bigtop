@@ -265,6 +265,9 @@
             <package>
               <name>livy</name>
             </package>
+            <package>
+              <name>spark-yarn-shuffle</name>
+            </package>
           </packages>
         </osSpecific>
         <osSpecific>
@@ -278,6 +281,9 @@
             </package>
             <package>
               <name>livy</name>
+            </package>
+            <package>
+              <name>spark-yarn-shuffle</name>
             </package>
           </packages>
         </osSpecific>

@@ -46,7 +46,7 @@ version = default("/commandParams/version", None)
 
 # hadoop default parameters
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 pig_conf_dir = "/etc/pig/conf"
 hadoop_home = '/usr'
 pig_bin_dir = ""
@@ -54,7 +54,7 @@ pig_bin_dir = ""
 # hadoop parameters for stack versions supporting rolling_upgrade
 if stack_version_formatted and check_stack_feature(StackFeature.ROLLING_UPGRADE, stack_version_formatted):
   pig_conf_dir = format("{stack_root}/current/pig-client/conf")
-  hadoop_home = stack_select.get_hadoop_dir("home")
+  hadoop_home = '/usr/lib/hadoop'
   pig_bin_dir = format("{stack_root}/current/pig-client/bin")
 
 hdfs_user = config['configurations']['hadoop-env']['hdfs_user']

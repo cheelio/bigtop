@@ -531,7 +531,7 @@ hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab'] if
 hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name'] if has_namenode else None
 hdfs_site = config['configurations']['hdfs-site'] if has_namenode else None
 default_fs = config['configurations']['core-site']['fs.defaultFS'] if has_namenode else None
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin") if has_namenode else None
+hadoop_bin_dir = '/usr/lib/hadoop/bin/' if has_namenode else None
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir() if has_namenode else None
 
 local_component_list = default("/localComponents", [])

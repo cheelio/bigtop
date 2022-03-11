@@ -40,7 +40,7 @@ yarn_historyserver_pid_file_old = format("{yarn_pid_dir}/yarn-{yarn_user}-histor
 yarn_historyserver_pid_file = format("{yarn_pid_dir}/yarn-{yarn_user}-timelineserver.pid")  # *-historyserver.pid is deprecated
 mapred_historyserver_pid_file = format("{mapred_pid_dir}/mapred-{mapred_user}-historyserver.pid")
 
-hadoop_home = stack_select.get_hadoop_dir("home")
+hadoop_home = '/usr/lib/hadoop'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 
 hostname = config['agentLevelParams']['hostname']

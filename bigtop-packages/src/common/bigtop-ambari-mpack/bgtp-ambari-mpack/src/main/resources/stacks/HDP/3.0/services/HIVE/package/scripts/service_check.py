@@ -137,13 +137,13 @@ class HiveServiceCheck(Script):
 
     exec_path = params.execute_path
     if params.version:
-      upgrade_hive_bin = format("{stack_root}/{version}/hive2/bin")
+      upgrade_hive_bin = format("/usr/lib/hive/bin")
       exec_path =  os.environ['PATH'] + os.pathsep + params.hadoop_bin_dir + os.pathsep + upgrade_hive_bin
 
     # beeline path
     llap_cmd = "! beeline -u '%s'" % format(";".join(beeline_url))
     # Append LLAP SQL script path
-    llap_cmd += format(" --hiveconf \"hiveLlapServiceCheck={unique_id}\" -f {stack_root}/current/hive-server2/scripts/llap/sql/serviceCheckScript.sql")
+    llap_cmd += format(" --hiveconf \"hiveLlapServiceCheck={unique_id}\" -f /usr/lib/hive/scripts/llap/sql/serviceCheckScript.sql")
     # Append grep patterns for detecting failure
     llap_cmd += " -e '' 2>&1| awk '{print}'|grep -i -e 'Invalid status\|Invalid URL\|command not found\|Connection refused'"
 

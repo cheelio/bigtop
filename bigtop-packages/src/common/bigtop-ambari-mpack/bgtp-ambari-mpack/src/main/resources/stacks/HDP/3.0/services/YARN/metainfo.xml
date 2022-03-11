@@ -27,7 +27,7 @@
       <version>3.1.0</version>
       <components>
 
-        <component>
+   <!--     <component>
           <name>TIMELINE_READER</name>
           <displayName>Timeline Service V2.0 Reader</displayName>
           <category>MASTER</category>
@@ -43,9 +43,9 @@
             <script>scripts/timelinereader.py</script>
             <scriptType>PYTHON</scriptType>
             <timeout>1200</timeout>
-          </commandScript>
+          </commandScript>-->
           <!-- ATSv2 backend i.e Hbase requires HDFS as dependency -->
-          <dependencies>
+<!--          <dependencies>
             <dependency>
               <name>HDFS/HDFS_CLIENT</name>
               <scope>host</scope>
@@ -54,7 +54,7 @@
               </auto-deploy>
             </dependency>
           </dependencies>
-        </component>
+        </component>-->
 
         <component>
           <name>YARN_REGISTRY_DNS</name>

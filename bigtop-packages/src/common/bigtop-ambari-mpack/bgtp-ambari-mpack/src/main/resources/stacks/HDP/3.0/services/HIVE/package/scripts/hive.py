@@ -492,7 +492,7 @@ Writes configuration files required by Hive.
 """
 def fill_conf_dir(component_conf_dir):
   import params
-  hive_client_conf_path = os.path.realpath(format("{stack_root}/current/{component_directory}/conf"))
+  hive_client_conf_path = os.path.realpath(format("/usr/lib/hive/conf"))
   component_conf_dir = os.path.realpath(component_conf_dir)
   mode_identified_for_file = 0644 if component_conf_dir == hive_client_conf_path else 0600
   mode_identified_for_dir = 0755 if component_conf_dir == hive_client_conf_path else 0700

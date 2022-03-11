@@ -50,7 +50,7 @@ version = default("/commandParams/version", None)
 
 # default hadoop parameters
 hadoop_home = '/usr'
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 tez_etc_dir = "/etc/tez"
 config_dir = "/etc/tez/conf"

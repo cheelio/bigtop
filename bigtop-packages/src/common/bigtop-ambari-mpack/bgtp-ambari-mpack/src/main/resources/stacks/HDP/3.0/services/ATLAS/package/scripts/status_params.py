@@ -57,4 +57,4 @@ tmp_dir = Script.get_tmp_dir()
 
 stack_name = default("/clusterLevelParams/stack_name", None)
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'

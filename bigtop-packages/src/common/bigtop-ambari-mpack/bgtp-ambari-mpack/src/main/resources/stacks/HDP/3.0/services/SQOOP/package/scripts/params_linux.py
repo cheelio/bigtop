@@ -74,7 +74,7 @@ zoo_conf_dir = "/etc/zookeeper"
 if stack_version_formatted and check_stack_feature(StackFeature.ROLLING_UPGRADE, stack_version_formatted):
   sqoop_conf_dir = format("{stack_root}/current/sqoop-client/conf")
   sqoop_lib = format("{stack_root}/current/sqoop-client/lib")
-  hadoop_home = stack_select.get_hadoop_dir("home")
+  hadoop_home = '/usr/lib/hadoop'
   hbase_home = format("{stack_root}/current/hbase-client")
   hive_home = format("{stack_root}/current/hive-client")
   sqoop_bin_dir = format("{stack_root}/current/sqoop-client/bin/")
@@ -142,7 +142,7 @@ atlas_hook_filename = default('/configurations/atlas-env/metadata_conf_file', 'a
 
 hostname = config['agentLevelParams']['hostname']
 hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
-hadoop_bin_dir = stack_select.get_hadoop_dir("bin")
+hadoop_bin_dir = '/usr/lib/hadoop/bin/'
 hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
 hdfs_principal_name = default('/configurations/hadoop-env/hdfs_principal_name', 'missing_principal').replace("_HOST", hostname)
 hdfs_site = config['configurations']['hdfs-site']
