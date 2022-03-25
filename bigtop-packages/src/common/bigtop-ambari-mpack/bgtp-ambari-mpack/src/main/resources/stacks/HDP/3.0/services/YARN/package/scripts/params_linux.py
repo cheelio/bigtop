@@ -156,7 +156,7 @@ if command_role in YARN_SERVER_ROLE_DIRECTORY_MAP:
   yarn_role_root = YARN_SERVER_ROLE_DIRECTORY_MAP[command_role]
 
 # defaults set to current based on role
-hadoop_mapr_home = format("/usr/lib/hadoop-yarn")
+hadoop_mapr_home = format("/usr/lib/hadoop-mapreduce")
 hadoop_yarn_home = format("/usr/lib/hadoop-yarn")
 
 # try to render the specific version

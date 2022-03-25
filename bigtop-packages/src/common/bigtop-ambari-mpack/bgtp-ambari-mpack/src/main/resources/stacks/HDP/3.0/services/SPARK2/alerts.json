@@ -10,7 +10,7 @@
         "scope": "ANY",
         "source": {
           "type": "PORT",
-          "uri": "{{spark2-defaults/spark.history.ui.port}}",
+          "uri": "{{spark-defaults/spark.history.ui.port}}",
           "default_port": 18081,
           "reporting": {
             "ok": {
@@ -37,7 +37,7 @@
         "scope": "ANY",
         "source": {
           "type": "SCRIPT",
-          "path": "HDP/3.0/services/SPARK2/package/scripts/alerts/alert_spark2_livy_port.py",
+          "path": "HDP/3.0/services/SPARK2/package/scripts/alerts/alert_spark_livy_port.py",
           "parameters": [
             {
               "name": "check.command.timeout",
@@ -54,14 +54,14 @@
     ],
     "SPARK2_THRIFTSERVER": [
       {
-        "name": "spark2_thriftserver_status",
-        "label": "Spark2 Thrift Server",
-        "description": "This host-level alert is triggered if the Spark2 Thrift Server cannot be determined to be up.",
+        "name": "spark_thriftserver_status",
+        "label": "Spark Thrift Server",
+        "description": "This host-level alert is triggered if the Spark Thrift Server cannot be determined to be up.",
         "interval": 1,
         "scope": "ANY",
         "source": {
           "type": "SCRIPT",
-          "path": "HDP/3.0/services/SPARK2/package/scripts/alerts/alert_spark2_thrift_port.py",
+          "path": "HDP/3.0/services/SPARK2/package/scripts/alerts/alert_spark_thrift_port.py",
           "parameters": [
             {
               "name": "check.command.timeout",

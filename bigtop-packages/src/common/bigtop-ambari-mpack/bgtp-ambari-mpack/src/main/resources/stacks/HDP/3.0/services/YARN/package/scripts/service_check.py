@@ -100,7 +100,7 @@ class ServiceCheckDefault(ServiceCheck):
                         )
 
     if params.stack_version_formatted_major and check_stack_feature(StackFeature.ROLLING_UPGRADE, params.stack_version_formatted_major):
-      path_to_distributed_shell_jar = format("{stack_root}/current/hadoop-yarn-client/hadoop-yarn-applications-distributedshell.jar")
+      path_to_distributed_shell_jar = format("/usr/lib/hadoop-yarn/hadoop-yarn-applications-distributedshell.jar")
     else:
       path_to_distributed_shell_jar = "/usr/lib/hadoop-yarn/hadoop-yarn-applications-distributedshell*.jar"
 

@@ -34,7 +34,7 @@
           <name>user_group</name>
         </property>
         <property>
-          <type>spark2-env</type>
+          <type>spark-env</type>
           <name>spark_group</name>
         </property>
       </user-groups>
@@ -43,10 +43,10 @@
   </property>
   <property>
     <name>spark_group</name>
-    <display-name>Spark2 Group</display-name>
+    <display-name>Spark Group</display-name>
     <value>spark</value>
     <property-type>GROUP</property-type>
-    <description>spark2 group</description>
+    <description>spark group</description>
     <value-attributes>
       <type>user</type>
     </value-attributes>
@@ -55,7 +55,7 @@
   <property>
     <name>spark_log_dir</name>
     <display-name>Spark Log directory</display-name>
-    <value>/var/log/spark2</value>
+    <value>/var/log/spark</value>
     <description>Spark Log Dir</description>
     <value-attributes>
       <type>directory</type>
@@ -145,7 +145,7 @@ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-{{hadoop_conf_dir}}}
 
 # The java implementation to use.
 export JAVA_HOME={{java_home}}
-
+export SPARK_DAEMON_CLASSPATH=/usr/lib/hadoop/*:/usr/lib/hadoop-yarn/*:/usr/lib/hadoop-hdfs/*
 </value>
     <value-attributes>
       <type>content</type>

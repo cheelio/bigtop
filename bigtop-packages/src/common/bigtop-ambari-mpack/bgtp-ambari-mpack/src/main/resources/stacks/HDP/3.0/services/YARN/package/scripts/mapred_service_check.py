@@ -21,7 +21,10 @@ Ambari Agent
 
 import os
 import sys
+import tarfile
+from contextlib import closing
 from resource_management.libraries.script.script import Script
+from resource_management.libraries.functions.copy_tarball import copy_to_hdfs, get_tarball_paths
 from resource_management.libraries.resources.execute_hadoop import ExecuteHadoop
 from resource_management.libraries.functions.format import format
 from resource_management.core.resources.system import Execute, File
@@ -30,6 +33,21 @@ from ambari_commons import OSConst
 from ambari_commons.os_family_impl import OsFamilyImpl
 from resource_management.core.logger import Logger
 
+
+def make_tarfile(output_filename, source_dirs):
+    try:
+        os.remove(output_filename)
+    except OSError:
+        pass
+    parent_dir=os.path.dirname(output_filename)
+    if not os.path.exists(parent_dir):
+        os.makedirs(parent_dir)
+    os.chmod(parent_dir, 0711)
+    with closing(tarfile.open(output_filename, "w:gz")) as tar:
+        for dir in source_dirs:
+            for file in os.listdir(dir):
+                tar.add(os.path.join(dir,file),arcname=file)
+    os.chmod(output_filename, 0644)
 
 class MapReduce2ServiceCheck(Script):
   def service_check(self, env):
@@ -157,6 +175,13 @@ class MapReduce2ServiceCheckDefault(MapReduce2ServiceCheck):
     )
     params.HdfsResource(None, action="execute")
 
+    source_dirs = [ "/usr/lib/hadoop-mapreduce", "/usr/lib/hadoop-mapreduce/lib"]
+    tmp_archive_file=get_tarball_paths("mapreduce")[1]
+    make_tarfile(tmp_archive_file, source_dirs)
+    copy_to_hdfs("mapreduce", params.user_group, params.hdfs_user, skip=params.sysprep_skip_copy_tarballs_hdfs, replace_existing_files=True)
+
+
+
     # initialize the ticket
     if params.security_enabled:
       kinit_cmd = format("{kinit_path_local} -kt {smoke_user_keytab} {smokeuser_principal};")
@@ -179,6 +204,10 @@ class MapReduce2ServiceCheckDefault(MapReduce2ServiceCheck):
                   user=params.smokeuser,
                   bin_dir=params.execute_path,
                   conf_dir=params.hadoop_conf_dir)
+
+
+
+
 
 
 if __name__ == "__main__":

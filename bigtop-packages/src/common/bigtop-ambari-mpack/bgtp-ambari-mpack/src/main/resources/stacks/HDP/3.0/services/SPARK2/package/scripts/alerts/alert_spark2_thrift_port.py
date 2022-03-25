@@ -34,16 +34,16 @@ stack_root = Script.get_stack_root()
 OK_MESSAGE = "TCP OK - {0:.3f}s response on port {1}"
 CRITICAL_MESSAGE = "Connection failed on host {0}:{1} ({2})"
 
-HIVE_SERVER_THRIFT_PORT_KEY = '{{spark2-hive-site-override/hive.server2.thrift.port}}'
-HIVE_SERVER_THRIFT_HTTP_PORT_KEY = '{{spark2-hive-site-override/hive.server2.thrift.http.port}}'
-HIVE_SERVER_TRANSPORT_MODE_KEY = '{{spark2-hive-site-override/hive.server2.transport.mode}}'
-HIVE_SERVER_HTTP_ENDPOINT = '{{spark2-hive-site-override/hive.server2.http.endpoint}}'
-HIVE_SERVER2_USE_SSL_KEY = '{{spark2-hive-site-override/hive.server2.use.SSL}}'
+HIVE_SERVER_THRIFT_PORT_KEY = '{{spark-hive-site-override/hive.server2.thrift.port}}'
+HIVE_SERVER_THRIFT_HTTP_PORT_KEY = '{{spark-hive-site-override/hive.server2.thrift.http.port}}'
+HIVE_SERVER_TRANSPORT_MODE_KEY = '{{spark-hive-site-override/hive.server2.transport.mode}}'
+HIVE_SERVER_HTTP_ENDPOINT = '{{spark-hive-site-override/hive.server2.http.endpoint}}'
+HIVE_SERVER2_USE_SSL_KEY = '{{spark-hive-site-override/hive.server2.use.SSL}}'
 
 SECURITY_ENABLED_KEY = '{{cluster-env/security_enabled}}'
 
-HIVE_SERVER2_KERBEROS_KEYTAB = '{{spark2-hive-site-override/hive.server2.authentication.kerberos.keytab}}'
-HIVE_SERVER2_PRINCIPAL_KEY = '{{spark2-hive-site-override/hive.server2.authentication.kerberos.principal}}'
+HIVE_SERVER2_KERBEROS_KEYTAB = '{{spark-hive-site-override/hive.server2.authentication.kerberos.keytab}}'
+HIVE_SERVER2_PRINCIPAL_KEY = '{{spark-hive-site-override/hive.server2.authentication.kerberos.principal}}'
 
 # The configured Kerberos executable search paths, if any
 KERBEROS_EXECUTABLE_SEARCH_PATHS_KEY = '{{kerberos-env/executable_search_paths}}'
@@ -51,7 +51,7 @@ KERBEROS_EXECUTABLE_SEARCH_PATHS_KEY = '{{kerberos-env/executable_search_paths}}
 THRIFT_PORT_DEFAULT = 10002
 HIVE_SERVER_TRANSPORT_MODE_DEFAULT = 'binary'
 
-SPARK_USER_KEY = '{{spark2-env/spark_user}}'
+SPARK_USER_KEY = '{{spark-env/spark_user}}'
 
 CHECK_COMMAND_TIMEOUT_KEY = 'check.command.timeout'
 CHECK_COMMAND_TIMEOUT_DEFAULT = 60.0
@@ -79,7 +79,7 @@ def execute(configurations={}, parameters={}, host_name=None):
     host_name (string): the name of this host where the alert is running
     """
 
-    spark_home = os.path.join(stack_root, "current", 'spark2-client')
+    spark_home = os.path.join(stack_root, "current", 'spark-client')
 
     if configurations is None:
         return ('UNKNOWN', ['There were no configurations supplied to the script.'])

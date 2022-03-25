@@ -158,7 +158,7 @@
   </property>
   <property>
     <name>yarn.application.classpath</name>
-    <value>$HADOOP_CONF_DIR,{{hadoop_home}}/*,{{hadoop_home}}/lib/*,{{stack_root}}/current/hadoop-hdfs-client/*,{{stack_root}}/current/hadoop-hdfs-client/lib/*,{{stack_root}}/current/hadoop-yarn-client/*,{{stack_root}}/current/hadoop-yarn-client/lib/*</value>
+    <value>$HADOOP_CONF_DIR,{{hadoop_home}}/*,{{hadoop_home}}/lib/*,/usr/lib/hadoop-hdfs/*,/usr/lib/hadoop-hdfs/lib/*,/usr/lib/hadoop-mapreduce/*,/usr/lib/hadoop-mapreduce/lib/*,/usr/lib/hadoop-yarn/*,/usr/lib/hadoop-yarn/lib/*</value>
     <description>Classpath for typical applications.</description>
     <on-ambari-upgrade add="false"/>
   </property>
@@ -1508,15 +1508,16 @@ yarn.node-labels.manager-class
     </value-attributes>
     <on-ambari-upgrade add="false"/>
   </property>
+  <!--
   <property>
     <name>yarn.service.framework.path</name>
-    <value>/hdp/apps/${hdp.version}/yarn/service-dep.tar.gz</value>
+    <value>/hdp/apps/3.1/yarn/service-dep.tar.gz</value>
     <description>
       YARN Service AM dependency tarball location. Enables faster app submission.
     </description>
     <on-ambari-upgrade add="true"/>
   </property>
-
+-->
   <!--ATSv2 properties-->
   <property>
     <name>yarn.nodemanager.aux-services.timeline_collector.class</name>
