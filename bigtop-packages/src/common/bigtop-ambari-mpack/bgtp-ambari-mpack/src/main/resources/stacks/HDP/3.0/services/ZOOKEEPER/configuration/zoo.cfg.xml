@@ -33,6 +33,17 @@
     <on-ambari-upgrade add="true"/>
   </property>
   <property>
+    <name>4lw.commands.whitelist</name>
+    <value>*</value>
+    <display-name>4lw.commands.whitelist</display-name>
+    <description>4lw.commands.whitelist</description>
+    <value-attributes>
+      <type>string</type>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
     <name>initLimit</name>
     <value>10</value>
     <display-name>Ticks to allow for sync at Init</display-name>
