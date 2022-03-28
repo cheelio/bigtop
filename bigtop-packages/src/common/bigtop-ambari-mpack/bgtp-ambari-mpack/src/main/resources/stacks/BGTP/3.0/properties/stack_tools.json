@@ -1,5 +1,5 @@
 {
-  "HDP": {
+  "BGTP": {
     "stack_selector": [
       "distro-select",
       "/usr/bin/distro-select",

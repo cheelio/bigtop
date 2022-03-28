@@ -19,14 +19,14 @@
   <os family="redhat7">
     <repo>
       <baseurl>http://repos.bigtop.apache.org/releases/3.0.0/centos/7/$basearch</baseurl>
-      <repoid>BGTP-1.0</repoid>
+      <repoid>BGTP-3.0</repoid>
       <reponame>BGTP</reponame>
     </repo>
   </os>
   <os family="ubuntu18">
     <repo>
       <baseurl>http://repos.bigtop.apache.org/releases/3.0.0/ubuntu/18.04/$(ARCH)</baseurl>
-      <repoid>BGTP-1.0</repoid>
+      <repoid>BGTP-3.0</repoid>
       <reponame>BGTP</reponame>
     </repo>
   </os>
