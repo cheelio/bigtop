@@ -31,7 +31,6 @@
         </changes>
       </component>
     </service>
-
     <service name="ATLAS">
       <component name="ATLAS_SERVER">
         <changes>
@@ -43,7 +42,6 @@
         </changes>
       </component>
     </service>
-
     <service name="RANGER">
       <component name="RANGER_TAGSYNC">
         <changes>
@@ -54,7 +52,6 @@
           </definition>
         </changes>
       </component>
-
       <component name="RANGER_ADMIN">
         <changes>
           <definition xsi:type="configure" id="hdp_3_1_0_0_ranger_services_heap_size_configuration" summary="Upgrading ranger-env configurations for Ranger service components">
@@ -76,10 +73,13 @@
             <type>admin-properties</type>
             <set key="PATCH_RETRY_INTERVAL" value="120" if-type="admin-properties" if-key="PATCH_RETRY_INTERVAL" if-key-state="absent"/>
           </definition>
+          <definition xsi:type="configure" id="hdp_3_1_maint_ranger_audit_solr_bootstrap" summary="Disabling Ranger Audit Solr Bootstrap Configuration">
+            <type>ranger-admin-site</type>
+            <set key="ranger.audit.solr.bootstrap.enabled" value="false" if-type="ranger-admin-site" if-key="ranger.audit.solr.bootstrap.enabled" if-key-state="absent"/>
+          </definition>
         </changes>
       </component>
     </service>
-
     <service name="RANGER_KMS">
       <component name="RANGER_KMS_SERVER">
         <changes>
@@ -101,16 +101,6 @@
             <set key="ranger.kms.keysecure.hostname" value="" if-type="dbks-site" if-key="ranger.kms.keysecure.hostname" if-key-state="absent"/>
             <set key="ranger.kms.keysecure.masterkey.size" value="256" if-type="dbks-site" if-key="ranger.kms.keysecure.masterkey.size" if-key-state="absent"/>
             <set key="ranger.kms.keysecure.sunpkcs11.cfg.filepath" value="" if-type="dbks-site" if-key="ranger.kms.keysecure.sunpkcs11.cfg.filepath" if-key-state="absent"/>
-          </definition>
-        </changes>
-      </component>
-    </service>
-    <service name="RANGER">
-      <component name="RANGER_ADMIN">
-        <changes>
-          <definition xsi:type="configure" id="hdp_3_1_maint_ranger_audit_solr_bootstrap" summary="Disabling Ranger Audit Solr Bootstrap Configuration">
-            <type>ranger-admin-site</type>
-            <set key="ranger.audit.solr.bootstrap.enabled" value="false" if-type="ranger-admin-site" if-key="ranger.audit.solr.bootstrap.enabled" if-key-state="absent"/>
           </definition>
         </changes>
       </component>

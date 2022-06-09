@@ -19,6 +19,14 @@
 <!-- Put site-specific property overrides in this file. -->
 <configuration xmlns:xi="http://www.w3.org/2001/XInclude" supports_final="true">
   <property>
+    <name>hadoop.proxyuser.hive.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.groups</name>
+    <value>*</value>
+  </property>
+  <property>
     <name>ha.failover-controller.active-standby-elector.zk.op.retries</name>
     <value>120</value>
     <description>ZooKeeper Failover Controller retries setting for your environment</description>
