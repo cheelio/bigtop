@@ -27,139 +27,188 @@
     <value>
         &lt;topology&gt;
 
-            &lt;gateway&gt;
+        &lt;gateway&gt;
 
-                &lt;provider&gt;
-                    &lt;role&gt;authentication&lt;/role&gt;
-                    &lt;name&gt;ShiroProvider&lt;/name&gt;
-                    &lt;enabled&gt;true&lt;/enabled&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;sessionTimeout&lt;/name&gt;
-                        &lt;value&gt;30&lt;/value&gt;
-                    &lt;/param&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;main.ldapRealm&lt;/name&gt;
-                        &lt;value&gt;org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm&lt;/value&gt;
-                    &lt;/param&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;main.ldapRealm.userDnTemplate&lt;/name&gt;
-                        &lt;value&gt;uid={0},ou=people,dc=hadoop,dc=apache,dc=org&lt;/value&gt;
-                    &lt;/param&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;main.ldapRealm.contextFactory.url&lt;/name&gt;
-                        &lt;value&gt;ldap://{{knox_host_name}}:33389&lt;/value&gt;
-                    &lt;/param&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;main.ldapRealm.contextFactory.authenticationMechanism&lt;/name&gt;
-                        &lt;value&gt;simple&lt;/value&gt;
-                    &lt;/param&gt;
-                    &lt;param&gt;
-                        &lt;name&gt;urls./**&lt;/name&gt;
-                        &lt;value&gt;authcBasic&lt;/value&gt;
-                    &lt;/param&gt;
-                &lt;/provider&gt;
+        &lt;provider&gt;
+        &lt;role&gt;authentication&lt;/role&gt;
+        &lt;name&gt;ShiroProvider&lt;/name&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;param&gt;
+        &lt;!--
+        session timeout in minutes,  this is really idle timeout,
+        defaults to 30mins, if the property value is not defined,,
+        current client authentication would expire if client idles contiuosly for more than this value
+        --&gt;
+        &lt;name&gt;sessionTimeout&lt;/name&gt;
+        &lt;value&gt;30&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapRealm&lt;/name&gt;
+        &lt;value&gt;org.apache.knox.gateway.shirorealm.KnoxLdapRealm&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapContextFactory&lt;/name&gt;
+        &lt;value&gt;org.apache.knox.gateway.shirorealm.KnoxLdapContextFactory&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapRealm.contextFactory&lt;/name&gt;
+        &lt;value&gt;$ldapContextFactory&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapRealm.userDnTemplate&lt;/name&gt;
+        &lt;value&gt;uid={0},ou=people,dc=hadoop,dc=apache,dc=org&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapRealm.contextFactory.url&lt;/name&gt;
+        &lt;value&gt;ldap://localhost:33389&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;main.ldapRealm.contextFactory.authenticationMechanism&lt;/name&gt;
+        &lt;value&gt;simple&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+        &lt;name&gt;urls./**&lt;/name&gt;
+        &lt;value&gt;authcBasic&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;/provider&gt;
 
-                &lt;provider&gt;
-                    &lt;role&gt;identity-assertion&lt;/role&gt;
-                    &lt;name&gt;Default&lt;/name&gt;
-                    &lt;enabled&gt;true&lt;/enabled&gt;
-                &lt;/provider&gt;
+        &lt;provider&gt;
+        &lt;role&gt;identity-assertion&lt;/role&gt;
+        &lt;name&gt;Default&lt;/name&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/provider&gt;
 
-                &lt;provider&gt;
-                    &lt;role&gt;authorization&lt;/role&gt;
-                    &lt;name&gt;AclsAuthz&lt;/name&gt;
-                    &lt;enabled&gt;true&lt;/enabled&gt;
-                &lt;/provider&gt;
+        &lt;provider&gt;
+        &lt;role&gt;hostmap&lt;/role&gt;
+        &lt;name&gt;static&lt;/name&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;param&gt;
+        &lt;name&gt;localhost&lt;/name&gt;
+        &lt;value&gt;sandbox,sandbox.hortonworks.com&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;/provider&gt;
 
-            &lt;/gateway&gt;
+        &lt;/gateway&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;NAMENODE&lt;/role&gt;
-                &lt;url&gt;{{namenode_address}}&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;AMBARI&lt;/role&gt;
+        &lt;url&gt;http://localhost:8080&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;JOBTRACKER&lt;/role&gt;
-                &lt;url&gt;rpc://{{rm_host}}:{{jt_rpc_port}}&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;FLINK&lt;/role&gt;
+        &lt;url&gt;http://localhost:8081&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;WEBHDFS&lt;/role&gt;
-                {{webhdfs_service_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;RESOURCEMANAGER&lt;/role&gt;
+        &lt;url&gt;http://localhost:8088/ws&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;WEBHCAT&lt;/role&gt;
-                &lt;url&gt;http://{{webhcat_server_host}}:{{templeton_port}}/templeton&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;YARNUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:8088/ws&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;OOZIE&lt;/role&gt;
-                &lt;url&gt;http://{{oozie_server_host}}:{{oozie_server_port}}/oozie&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;YARNUIV2&lt;/role&gt;
+        &lt;url&gt;http://localhost:8088/ws&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;OOZIEUI&lt;/role&gt;
-                &lt;url&gt;http://{{oozie_server_host}}:{{oozie_server_port}}/oozie/&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;NAMENODE&lt;/role&gt;
+        &lt;url&gt;hdfs://localhost:8020&lt;/url&gt;
+        &lt;/service&gt;
 
+        &lt;service&gt;
+        &lt;role&gt;HDFSUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:50070&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;WEBHBASE&lt;/role&gt;
-                &lt;url&gt;http://{{hbase_master_host}}:{{hbase_master_port}}&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;WEBHDFS&lt;/role&gt;
+        &lt;url&gt;http://localhost:50070/webhdfs&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;HIVE&lt;/role&gt;
-                &lt;url&gt;http://{{hive_server_host}}:{{hive_http_port}}/{{hive_http_path}}&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;WEBHCAT&lt;/role&gt;
+        &lt;url&gt;http://localhost:50111/templeton&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;RESOURCEMANAGER&lt;/role&gt;
-                &lt;url&gt;http://{{rm_host}}:{{rm_port}}/ws&lt;/url&gt;
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;HIVE&lt;/role&gt;
+        &lt;url&gt;http://localhost:10001/cliservice&lt;/url&gt;
+        &lt;param&gt;
+        &lt;name&gt;replayBufferSize&lt;/name&gt;
+        &lt;value&gt;8&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-COORDINATOR-UI&lt;/role&gt;
-                {{druid_coordinator_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;HBASEUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:16010&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-COORDINATOR&lt;/role&gt;
-                {{druid_coordinator_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;WEBHBASE&lt;/role&gt;
+        &lt;url&gt;http://localhost:60080&lt;/url&gt;
+        &lt;param&gt;
+        &lt;name&gt;replayBufferSize&lt;/name&gt;
+        &lt;value&gt;8&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-OVERLORD-UI&lt;/role&gt;
-                {{druid_overlord_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;OOZIE&lt;/role&gt;
+        &lt;url&gt;http://localhost:11000&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-OVERLORD&lt;/role&gt;
-                {{druid_overlord_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;OOZIEUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:11000&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-ROUTER&lt;/role&gt;
-                {{druid_router_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;KAFKA&lt;/role&gt;
+        &lt;url&gt;tcp://localhost:9092&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;DRUID-BROKER&lt;/role&gt;
-                {{druid_broker_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;LIVYSERVER&lt;/role&gt;
+        &lt;url&gt;http://localhost:8998&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;ZEPPELINUI&lt;/role&gt;
-                {{zeppelin_ui_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;SOLR&lt;/role&gt;
+        &lt;url&gt;http://localhost:8983&lt;/url&gt;
+        &lt;/service&gt;
 
-            &lt;service&gt;
-                &lt;role&gt;ZEPPELINWS&lt;/role&gt;
-                {{zeppelin_ws_urls}}
-            &lt;/service&gt;
+        &lt;service&gt;
+        &lt;role&gt;SPARK3HISTORYUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:8080&lt;/url&gt;
+        &lt;/service&gt;
 
+        &lt;service&gt;
+        &lt;role&gt;RANGER&lt;/role&gt;
+        &lt;url&gt;http://localhost:6080&lt;/url&gt;
+        &lt;/service&gt;
+
+        &lt;service&gt;
+        &lt;role&gt;RANGERUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:6080&lt;/url&gt;
+        &lt;/service&gt;
+
+        &lt;service&gt;
+        &lt;role&gt;ZEPPELINUI&lt;/role&gt;
+        &lt;url&gt;http://localhost:9995&lt;/url&gt;
+        &lt;/service&gt;
+
+        &lt;service&gt;
+        &lt;role&gt;ZEPPELINWS&lt;/role&gt;
+        &lt;url&gt;http://localhost:9995&lt;/url&gt;
+        &lt;/service&gt;
         &lt;/topology&gt;
+
     </value>
     <description>
         The configuration specifies the Hadoop cluster services Knox will provide access to.
