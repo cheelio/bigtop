@@ -16,7 +16,7 @@
 %define ranger_name ranger
 %define ranger_home /usr/lib/%{ranger_name}
 %define ranger_user_home /var/lib/%{ranger_name}
-
+%define ranger_admin_webapp_web_inf /usr/lib/%{ranger_name}-admin/ews/webapp/WEB-INF
 %define usr_lib_ranger /usr/lib/%{ranger_name}
 %define var_log_ranger /var/log/%{ranger_name}
 %define var_run_ranger /var/run/%{ranger_name}
@@ -385,6 +385,9 @@ getent passwd ranger >/dev/null || useradd -c "Ranger" -s /bin/bash -g ranger -m
 if [ -f %{usr_lib_ranger}-usersync/native/credValidator.uexe ]; then
     chmod u+s %{usr_lib_ranger}-usersync/native/credValidator.uexe
 fi
+
+%post admin
+%{alternatives_cmd} --install %{ranger_admin_webapp_web_inf}/classes/conf %{ranger_name}-admin-conf %{ranger_admin_webapp_web_inf}/classes/conf.dist 30
 
 %preun
 

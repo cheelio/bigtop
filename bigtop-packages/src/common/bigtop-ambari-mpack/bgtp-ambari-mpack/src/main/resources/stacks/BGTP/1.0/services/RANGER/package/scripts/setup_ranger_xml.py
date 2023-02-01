@@ -84,6 +84,7 @@ def setup_ranger_admin(upgrade_type=None):
   else:
     cp = cp + os.pathsep + format("{driver_curl_target}")
   cp = cp + os.pathsep + format("{ranger_home}/ews/lib/*")
+  cp = cp + os.pathsep + format("{ranger_home}/ews/webapp/WEB-INF/lib/*")
 
   db_connection_check_command = format(
     "{java_home}/bin/java -cp {cp} org.apache.ambari.server.DBConnectionVerification '{ranger_jdbc_connection_url}' {ranger_db_user} {ranger_db_password!p} {ranger_jdbc_driver}")
@@ -718,6 +719,9 @@ def setup_ranger_audit_solr():
 
 def setup_ranger_admin_passwd_change(username, user_password, user_default_password):
   import params
+  print(username)
+  print(user_password)
+  print(user_default_password)
 
   env_dict = {'RANGER_ADMIN_HOME':params.ranger_home, 'JAVA_HOME':params.java_home}
   if params.db_flavor.lower() == 'sqla':

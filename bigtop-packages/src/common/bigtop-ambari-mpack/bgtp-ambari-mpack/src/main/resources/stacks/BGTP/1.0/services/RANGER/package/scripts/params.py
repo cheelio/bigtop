@@ -226,7 +226,7 @@ if not is_empty(config["configurations"]["admin-properties"]["audit_db_password"
 
 ugsync_jceks_path = config["configurations"]["ranger-ugsync-site"]["ranger.usersync.credstore.filename"]
 ugsync_cred_lib = os.path.join(usersync_home,"lib","*")
-cred_lib_path = os.path.join(ranger_home,"cred","lib","*")
+cred_lib_path = os.path.join(ranger_home,"cred","lib","*") + os.pathsep + os.path.join(ranger_home,"ews","webapp", "WEB-INF", "lib", "*")
 cred_setup_prefix = (format('{ranger_home}/ranger_credential_helper.py'), '-l', cred_lib_path)
 ranger_audit_source_type = config["configurations"]["ranger-admin-site"]["ranger.audit.source.type"]
 
